@@ -1,0 +1,7 @@
+path: /home/ciabd12/Documentos/Ejercicios-Python/Mia/Practica_yolo_platanos/Banana Ripeness Classification.v2-original-images_modifiedclasses.folder
+train: train
+val: valid
+test: test
+
+nc: 4
+names: ['overripe', 'ripe', 'rotten', 'unripe']
