@@ -1,0 +1,24 @@
+# Configuración del dataset para YOLO Segmentación
+# Generado desde Label Studio
+
+# Ruta base del dataset (relativa desde donde ejecutas el script)
+path: Practica_label_studio/dataset
+
+# Carpetas de imágenes (relativas a 'path')
+train: images/train
+val: images/val
+test: images/test  # Opcional
+
+# Número de clases
+# IMPORTANTE: Actualiza este número según tus clases de Label Studio
+nc: 2  # Ejemplo: si tienes 2 clases (agua, no-agua)
+
+# Nombres de las clases
+# IMPORTANTE: Actualiza con los nombres exactos de tus clases de Label Studio
+# El orden importa: índice 0 = primera clase, índice 1 = segunda clase, etc.
+names:
+  0: Playmobil      # Reemplaza con tu clase
+  1: Superthing    # Reemplaza con tu clase
+  # Añade más clases según sea necesario
+  # 2: otra_clase
+  # 3: otra_clase_mas
