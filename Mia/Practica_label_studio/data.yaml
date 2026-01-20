@@ -2,7 +2,7 @@
 # Generado desde Label Studio
 
 # Ruta base del dataset (relativa desde donde ejecutas el script)
-path: Practica_label_studio/dataset
+path: dataset
 
 # Carpetas de imágenes (relativas a 'path')
 train: images/train
