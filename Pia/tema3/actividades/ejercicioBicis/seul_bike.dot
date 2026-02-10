@@ -1,0 +1,21 @@
+digraph Tree {
+node [shape=box, style="filled, rounded", color="black", fontname="helvetica"] ;
+edge [fontname="helvetica"] ;
+0 [label="Functioning Day_Yes <= 0.5\ngini = 0.998\nsamples = 6570\nvalue = [227.0, 3.0, 1.0 ... 1.0, 1.0, 1.0]\nclass = 0", fillcolor="#fefbf9"] ;
+1 [label="gini = 0.0\nsamples = 227\nvalue = [227, 0, 0 ... 0, 0, 0]\nclass = 0", fillcolor="#e58139"] ;
+0 -> 1 [labeldistance=2.5, labelangle=45, headlabel="True"] ;
+2 [label="Temperature(°C) <= 3.15\ngini = 0.999\nsamples = 6343\nvalue = [0.0, 3.0, 1.0 ... 1.0, 1.0, 1.0]\nclass = 223", fillcolor="#ffffff"] ;
+0 -> 2 [labeldistance=2.5, labelangle=-45, headlabel="False"] ;
+3 [label="Hour <= 6.5\ngini = 0.997\nsamples = 1588\nvalue = [0, 0, 0 ... 0, 0, 0]\nclass = 103", fillcolor="#ffffff"] ;
+2 -> 3 ;
+4 [label="gini = 0.993\nsamples = 570\nvalue = [0, 0, 0 ... 0, 0, 0]\nclass = 32", fillcolor="#ffffff"] ;
+3 -> 4 ;
+5 [label="gini = 0.997\nsamples = 1018\nvalue = [0.0, 0.0, 0.0 ... 0.0, 0.0, 0.0]\nclass = 189", fillcolor="#ffffff"] ;
+3 -> 5 ;
+6 [label="Rainfall(mm) <= 0.65\ngini = 0.999\nsamples = 4755\nvalue = [0.0, 3.0, 1.0 ... 1.0, 1.0, 1.0]\nclass = 17", fillcolor="#ffffff"] ;
+2 -> 6 ;
+7 [label="gini = 0.999\nsamples = 4531\nvalue = [0, 0, 1 ... 1, 1, 1]\nclass = 223", fillcolor="#ffffff"] ;
+6 -> 7 ;
+8 [label="gini = 0.987\nsamples = 224\nvalue = [0, 3, 0 ... 0, 0, 0]\nclass = 17", fillcolor="#fffefd"] ;
+6 -> 8 ;
+}
