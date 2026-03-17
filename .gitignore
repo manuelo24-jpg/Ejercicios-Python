@@ -6,3 +6,5 @@ rock-paper-scissors.v14i.yolov11
 dataset-piedra-papel-tijeras
 *.mp4
 License-Plate-Recognition-12
+*.mp3
+.env
