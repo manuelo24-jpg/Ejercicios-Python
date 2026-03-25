@@ -9,3 +9,5 @@ License-Plate-Recognition-12
 *.mp3
 .env
 *.keras
+*.pem
+DatosMySQL
