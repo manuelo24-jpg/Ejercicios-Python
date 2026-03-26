@@ -10,4 +10,4 @@ License-Plate-Recognition-12
 .env
 *.keras
 *.pem
-DatosMySQL
+Datos*
