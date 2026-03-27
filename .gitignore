@@ -11,3 +11,4 @@ License-Plate-Recognition-12
 *.keras
 *.pem
 Datos*
+*.npy
