@@ -1,0 +1,109 @@
+#Para ejecutar el docker-compose.yml, se debe ejecutar el siguiente comando en la terminal:
+#docker-compose up -d       
+#(ó si se desea especificar el archivo: #docker-compose -f docker-compose.yml up -d )
+#Para desmontarlo, se debe ejecutar el siguiente comando en la terminal:
+#docker-compose down
+
+#Después, Para limpiar las carpetas de datos, se deben eliminar los archivos dentro de las carpetas "DatosMySQL" y "DatosRedis" (y las demás carpetas de datos si se añaden más servicios).
+#docker run --rm -v $(pwd):/datos alpine sh -c "rm -rf /datos/DatosMySQL /datos/DatosRedis"
+
+#limpieza general:   docker system prune --all --volumes
+
+services:
+  #MySQL: http://localhost:8080    root:root   (tarda 30-50 segundos en iniciar)
+  mysql:
+    image: mysql:latest
+    container_name: mysql_server
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - ./DatosMySQL:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    restart: always
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    container_name: phpmyadmin_web
+    restart: always
+    ports:
+      - "8080:80"
+    environment:
+      PMA_HOST: mysql  # Este nombre debe coincidir con el nombre del servicio arriba
+      PMA_PORT: 3306
+    depends_on:
+      - mysql
+
+#Redis:    http://localhost:5540   (tarda 10-20 segundos en iniciar) 
+#          y añadir redis://default@redis:6379
+  redis:
+    image: redis:latest
+    container_name: mi_redis
+    restart: always
+    ports:
+      - "6379:6379"
+    volumes:
+      - ./DatosRedis:/data
+    command: ["redis-server", "--appendonly", "yes"]
+
+  redis-insight:
+    image: redis/redisinsight:latest
+    container_name: redis_insight
+    ports:
+      - "5540:5540"
+    depends_on:
+      - redis
+
+
+
+
+
+  # #CouchDB
+  # couchdb:
+  #   image: couchdb
+  #   environment:
+  #     - COUCHDB_USER=dev
+  #     - COUCHDB_PASSWORD=dev
+  #   ports:
+  #     - "5984:5984"
+  #   user: "1001:1001"
+  #   volumes:
+  #     - ./CouchDBData:/opt/couchdb/data/
+  
+  
+  # #Memcached
+  # memcached:
+  #   image: memcached
+  #   command:
+  #     - --conn-limit=1024
+  #     - --memory-limit=64
+  #     - --threads=4
+  #   ports:
+  #     - "11211:11211"
+  # #Hbase
+  # hbase:
+  #   image: harisekhon/hbase
+  #   container_name: hbase
+  #   environment:
+  #     - HBASE_MANAGES_ZK=true
+  #   ports:
+  #     - "16010:16010"
+  #     - "9090:9090"
+  #   user: "0:0"
+  #   volumes:
+  #     - ./HbaseData:/data/hbase
+  # #Cassandra
+  # cassandra:
+  #   image: cassandra:latest
+  #   container_name: cassandra
+  #   restart: unless-stopped
+  #   environment:
+  #     - CASSANDRA_CLUSTER_NAME=MyCluster
+  #     - CASSANDRA_NUM_TOKENS=256
+  #     - CASSANDRA_DC=dc1
+  #     - CASSANDRA_RACK=rack1
+  #   ports:
+  #     - "9042:9042"
+  #   user: "1001:1001"
+  #   volumes:
+  #     - ./CassandraDatos:/data/db
