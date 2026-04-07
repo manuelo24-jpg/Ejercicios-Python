@@ -12,3 +12,5 @@ License-Plate-Recognition-12
 *.pem
 Datos*
 *.npy
+*.zip
+*.pdf
