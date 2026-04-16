@@ -15,7 +15,7 @@ cursor = db.cursor()
 # Conexión a Kafka
 # Conexión a Kafka (Añadimos los 3 brokers para Alta Disponibilidad)
 consumer = KafkaConsumer(
-    'datos_sensor', # Asegúrate de que este nombre coincida con el que creaste con docker exec
+    'uso_gimnasio', # Asegúrate de que este nombre coincida con el que creaste con docker exec
     bootstrap_servers=['localhost:9092', 'localhost:9094', 'localhost:9096'],
     auto_offset_reset='earliest',
     value_deserializer=lambda m: json.loads(m.decode('utf-8'))

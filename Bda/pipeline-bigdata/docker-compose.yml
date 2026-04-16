@@ -67,6 +67,16 @@ services:
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 3
       KAFKA_LOG_DIRS: /var/lib/kafka/data
       CLUSTER_ID: "gimnasio-kafka-cluster-1"
+  # superset:
+  #     image: apache/superset:latest
+  #     container_name: gimnasio_superset
+  #     ports:
+  #       - "8088:8088"
+  #     environment:
+  #       SUPERSET_SECRET_KEY: "admin"
+  #       DATABASE_DB: "superset"
+  #       DATABASE_HOST: "db" # Base de datos interna de superset, no la de gimnasio
+  #     restart: always
 
 volumes:
   mysql_data:
