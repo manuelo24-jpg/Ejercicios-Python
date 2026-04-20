@@ -1,0 +1,31 @@
+#Levantar con docker compose up -d
+
+#Comprobar que están funcionando viendo los logs:
+#docker logs gpu-app-alpha
+#docker logs gpu-app-beta
+
+services:
+  gpu-ia1:
+    image: nvidia/cuda:12.6.0-base-ubuntu24.04
+    container_name: gpu-ia1
+    # Comando para mantenerlo vivo y ver que detecta la GPU continuamente
+    command: bash -c "while true; do nvidia-smi; sleep 10; done"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+
+  gpu-ia2:
+    image: nvidia/cuda:12.6.0-base-ubuntu24.04
+    container_name: gpu-ia2
+    command: bash -c "while true; do nvidia-smi; sleep 10; done"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
