@@ -19,3 +19,10 @@ superset
 01-*
 02-*
 03-*
+*.bin
+*.safetensors
+*.ckpt
+*.pt
+*.pth
+*.h5
+*.hdf5
