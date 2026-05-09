@@ -26,4 +26,4 @@ superset
 *.pth
 *.h5
 *.hdf5
-.sql*
+*.sql*
