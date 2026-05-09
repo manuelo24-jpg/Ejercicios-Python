@@ -140,9 +140,78 @@ al Random Forest. </p>
 
 ## 6.Evaluación y comparación de métricas
 
-## 7.Conclusiones
+El Random Forest supera al SVM en todas las métricas. La diferencia de 10 puntos aproximadamente en accuracy se amplifica en el macro F1 (~15 puntos), donde el peso de las clases minoritarias queda expuesto.
+
+<h3> Discusión alineada con el Tema 3 </h3>
+
+<h4>Métricas macro, micro y weighted: ¿cuál usar?</h4>
+
+Esta es la decisión clave del tema. En este dataset con clases muy desbalanceadas (clase 3 con 4 
+instancias frente a clase 6 con 580), la elección del promedio cambia radicalmente la lectura del rendimiento:
+
+<ul>
+  <li>Weighted avg: refleja el rendimiento real en producción si la 
+  distribución se mantiene. Favorece a las clases mayoritarias (5 y 6). 
+  RF obtiene 0.68, que parece aceptable.</li>
+  <li>Macro avg: da el mismo peso a todas las clases. Aquí RF cae a 0.46, 
+  revelando que el modelo falla sistemáticamente en las clases extremas. 
+  Esta es la métrica más honesta para evaluar si el modelo "entiende" 
+  toda la escala de calidad.</li>
+  <li>Ninguno de los dos modelos aprende la clase 3 porque tiene demasiado 
+  pocas instancias, lo que arrastra el macro avg hacia abajo de forma 
+  inevitable.</li>
+</ul>
+
+<h4>Patrón de confusión ordinal</h4>
+
+En ambos modelos se observa que los errores no son aleatorios: siempre 
+ocurren entre clases adyacentes (5↔6, 6↔7, 7↔8). Ningún modelo confunde 
+calidad 3 con calidad 8. Esto es coherente con la naturaleza ordinal del 
+problema y apunta a que una estrategia One-vs-Rest bien calibrada podría 
+aprovechar esta estructura.
+
+**¿Por qué el SVM rinde peor?**
+
+El SVM busca hiperplanos de separación óptima, pero en un problema de 
+7 clases con fronteras difusas entre niveles de calidad adyacentes, 
+los márgenes son muy estrechos. El Random Forest, al construir múltiples 
+árboles con submuestras, es más robusto ante este tipo de ambigüedad de 
+frontera y ante el desbalance de clases.
+
+## 7.Conclusiones y limitaciones
+
+<ul>
+  <li>El Random Forest es el modelo más adecuado para este problema, con 
+  una ventaja clara sobre el SVM en todas las métricas, especialmente 
+  en las clases minoritarias.</li>
+  <li>La matriz de confusión multiclase revela que el verdadero problema 
+  no es el accuracy global sino la incapacidad de ambos modelos para 
+  distinguir las calidades extremas (3, 4 y 8), que son precisamente 
+  las más interesantes desde el punto de vista enológico. </li>
+  <li>La diferencia entre macro avg y weighted avg es la métrica más 
+  reveladora de este trabajo: un modelo puede parecer razonablemente 
+  bueno en weighted (0.68 RF) y ser mediocre en macro (0.46 RF). Sin 
+  analizar la matriz de confusión esta distinción es invisible.</li>
+  <li>Clases extremas irresolubles con los datos actuales: la clase 3 
+  tiene solo 30 instancias en el dataset completo . Ningún 
+  clasificador puede aprender una clase con tan pocas muestras.</li>
+  <li>No se ha explorado la reagrupación de clases**: unificar calidades 
+  3-4 como "baja", 5-6 como "media" y 7-9 como "alta" podría mejorar 
+  sustancialmente los resultados y facilitar el análisis de la matriz.</li>
+</ul>
 
 ## 8.Lineas de mejora y trabajo futuro
+<ul>
+  <li>Reagrupación en 3 clases (baja / media / alta): simplificaría el problema,
+   haría las matrices más interpretables y probablemente mejoraría las métricas de forma significativa. 
+   Sería interesante comparar los resultados antes y después de la reagrupación.</li>
+  <li>Técnicas de balanceo de clases: aplicar SMOTE u oversampling sobre las clases 3, 4 y 8 para que 
+  los modelos tengan suficientes ejemplos de las calidades extremas. También se podría explorar
+  el parámetro class_weight='balanced' en ambos modelos.</li>
+  <li>Análisis de importancia de variables: el Random Forest permite extraer feature importances.
+  Identificar cuáles variables fisicoquímicas predicen mejor la calidad podría mejorar el
+   modelo y aportar interpretabilidad enológica al trabajo.</li>
+</ul>
 
 ## 9. Bibliografia
 
@@ -159,3 +228,17 @@ al Random Forest. </p>
 <p>IA utilizada: Git hub copilot con motos de Claude Haiku 4.5 <p>
 <p>Prompt realizado: Que modelos de clasificación podrían ser los más optimos para entrenar con estos datasets y explicame por que </p>
 <p>Razón: tenia la idea justamente de usar los 2 que he utilizado, pero quería tener una base más sólida para defender el buen uso de estos modelos </p>
+
+<p>IA utilizada: Claude </p>
+<p>Prompt realizado: Podrías explicarme los diferentes parametros de la matriz de confusión </p>
+<p>Razón: habia mirado un par de páginas pero lo explicaban de forma muy simple y no se me quedaba, asi que traté de usar la IA, para que me lo explicara
+y poder aplicarlo bien al caso </p>
+
+<p>IA utilizada: Claude </p>
+<p>Prompt realizado: Podrías darme ideas de como abordar el tema del analisis de la matriz de confusión en un ejercicio multiclase </p>
+<p>Razón: quería tener una explicación mas a detalle de como abordar los temas del guión</p>
+
+<p>IA utilizada: Claude </p>
+<p>Prompt realizado: ¿Podrías revisarme faltas de ortografía o darme alguna idea de mejora de redacción? </p>
+<p>Razón: para realizar una revisión de todo y perfilar el trabajo</p>
+
