@@ -225,20 +225,20 @@ frontera y ante el desbalance de clases.
 
 ## 10. Anexo A - Uso de herramientas de IA
 
-<p>IA utilizada: Git hub copilot con motos de Claude Haiku 4.5 <p>
+<p><strong>IA utilizada: Git hub copilot con motos de Claude Haiku 4.5 </strong><p>
 <p>Prompt realizado: Que modelos de clasificación podrían ser los más optimos para entrenar con estos datasets y explicame por que </p>
 <p>Razón: tenia la idea justamente de usar los 2 que he utilizado, pero quería tener una base más sólida para defender el buen uso de estos modelos </p>
 
-<p>IA utilizada: Claude </p>
+<p><strong>IA utilizada: Claude </strong></p>
 <p>Prompt realizado: Podrías explicarme los diferentes parametros de la matriz de confusión </p>
 <p>Razón: habia mirado un par de páginas pero lo explicaban de forma muy simple y no se me quedaba, asi que traté de usar la IA, para que me lo explicara
 y poder aplicarlo bien al caso </p>
 
-<p>IA utilizada: Claude </p>
+<p><strong>IA utilizada: Claude </strong></p>
 <p>Prompt realizado: Podrías darme ideas de como abordar el tema del analisis de la matriz de confusión en un ejercicio multiclase </p>
 <p>Razón: quería tener una explicación mas a detalle de como abordar los temas del guión</p>
 
-<p>IA utilizada: Claude </p>
+<p><strong>IA utilizada: Claude </strong></p>
 <p>Prompt realizado: ¿Podrías revisarme faltas de ortografía o darme alguna idea de mejora de redacción? </p>
 <p>Razón: para realizar una revisión de todo y perfilar el trabajo</p>
 
