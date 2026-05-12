@@ -165,7 +165,7 @@ instancias frente a clase 6 con 580), la elección del promedio cambia radicalme
 <h4>Patrón de confusión ordinal</h4>
 
 En ambos modelos se observa que los errores no son aleatorios: siempre 
-ocurren entre clases adyacentes (5↔6, 6↔7, 7↔8). Ningún modelo confunde 
+ocurren entre clases adyacentes (5<>6, 6<>7, 7<>8). Ningún modelo confunde 
 calidad 3 con calidad 8. Esto es coherente con la naturaleza ordinal del 
 problema y apunta a que una estrategia One-vs-Rest bien calibrada podría 
 aprovechar esta estructura.
