@@ -1,6 +1,6 @@
 # Trabajo sobre matriz de confusión
 ## 1.Introducción 
-<p>En este trabajo vamos a analizar un dataset con 2 modelos diferentes para analizar su matriz de confusión, para ello primero vamos a justificar la toma de decisiones que tenemos que tomar a lo largo del trabajo <p>
+<p>En este trabajo vamos a analizar un dataset con 2 modelos diferentes para analizar su matriz de confusión, para ello primero vamos a justificar la toma de decisiones que tenemos que tomar a lo largo del trabajo. <p>
 
 <ul>
   <li>Dataset elegido: en un momento quise trabajo con los fraudes bancarios pero miré los datos y no me gustaron porque era todo V1,V2,etc... y no eran muy claro, en cambio del dataset del cancer ya tengo experiencia, recuerdo que la página de documentación era bastante clara y además eso ayuda mucho porque tenemos metodos que nos dan la descripción del propio dataset.</li>
@@ -18,7 +18,7 @@
 <h3>Descripción inicial </h3>
 <p>Son 2 datasets que contienen varios datos relacionados a variantes de vinos Portugueses, uno rojo y otro blanco. <p>
 <p>En base a la documentación sabemos que las clases están ordenadas pero no balanceadas, el promedio mas alto está en los vinos de nota normal no en los muy buenos o en los mediocres.</p>
-<p>No se sabe si todas las variables son relevantes, cosa que iremos viendo y documentado en la preparación y analisis del dataset, por lo que ahora procederemos a realizar la descripción mas en profundidas </p>
+<p>No se sabe si todas las variables son relevantes, cosa que iremos viendo y documentado en la preparación y analisis del dataset, por lo que ahora procederemos a realizar la descripción mas en profundidas.</p>
 
 <h3> Descripción técnica </h3>
 <p>Primero de todo, vamos a proceder a hacer un muy breve analisis de las variables </p>
@@ -59,31 +59,31 @@
 
 ## 3.Preparación de los datos
 
-<p>Con toda la descripción anteriormente realizada, podemos ver que los datos de este dataset están muy limpios y la variable objetivo es bastante clara, por lo menos a mi parecer, por lo que lo único que tendriamos que hacer es definir la X y la Y <p>
+<p>Con toda la descripción anteriormente realizada, podemos ver que los datos de este dataset están muy limpios y la variable objetivo es bastante clara, por lo menos a mi parecer, por lo que lo único que tendriamos que hacer es definir la X y la Y.<p>
 <image src="Capturas/Captura7.png" alt="Preparación de los datos">
 
-<p>Con esto realizado solo quedaría escalar los datos ya que es algo importante para los modelos de clasificación que utilizaremos</p>
+<p>Con esto realizado solo quedaría escalar los datos ya que es algo importante para los modelos de clasificación que utilizaremos.</p>
 <image src="Capturas/Captura8.png" alt="Escalado de los datos">
 
 ## 4.Modelos de clasificación
 
 <p>En este apartado vamos a justificar la elección de los modelos de clasificación que vamos a utilizar. Dado que estamos trabajando con un problema de clasificación multiclase, es importante seleccionar modelos que sean capaces de manejar este tipo de problemas de manera efectiva. </p>
 
-<p> El primer modelo que vamos a utilizar es el ramdon forest por los siguientes características</p>
+<p> El primer modelo que vamos a utilizar es el ramdon forest por los siguientes características.</p>
 
 <ul>
-  <li>Es robusto ante los posibles outliers que comentamos anteriormente</li>
-  <li>Tiene buen manejo de las relaciones no lineales </li>
-  <li>Al tener un dataset pequeño no va a consumir tanta potencia</li>
+  <li>Es robusto ante los posibles outliers que comentamos anteriormente.</li>
+  <li>Tiene buen manejo de las relaciones no lineales.</li>
+  <li>Al tener un dataset pequeño no va a consumir tanta potencia.</li>
 </ul>
 
 <image src="Capturas/Captura9.png" alt="Ramdon Forest Classifier">
 
-<p> El segundo modelo a utilizar va a ser el SVM (Support Vector Machine) por las siguientes características<p>
+<p> El segundo modelo a utilizar va a ser el SVM (Support Vector Machine) por las siguientes características.<p>
 
 <ul>
-  <li>Es bastante bueno para todo tipo de casos, por lo que al ser un caso que se puede complicar por el desbalanceo, prefiero tirar a algo medianamente seguro</li>
-  <li>Suele tener muy buena efectividad con el kernel RBF </li>
+  <li>Es bastante bueno para todo tipo de casos, por lo que al ser un caso que se puede complicar por el desbalanceo, prefiero tirar a algo medianamente seguro.</li>
+  <li>Suele tener muy buena efectividad con el kernel RBF.</li>
 </ul>
 
 <image src="Capturas/Captura10.png" alt="SVM">
@@ -92,7 +92,7 @@
 
 <h3> Random Forest </h3>
 
-<p>El modelo de Random Forest obtiene un accuracy de 0.6882, aunque como veremos, esta métrica sola no cuenta todo</p>
+<p>El modelo de Random Forest obtiene un accuracy de 0.6882, aunque como veremos, esta métrica sola no cuenta todo.</p>
 
 <image src="Capturas/Captura11.png" alt="Ramdon forest metricas">
 
@@ -114,6 +114,8 @@ al tratarse de una escala ordinal de calidad:<p>
   calidad 7.</li>
 <li>Clase 4: recall del 11%, lo que significa que 33 de 37 vinos de 
   calidad 4 no son reconocidos como tal.</li>
+<li>Clase 9: Tiene tan pocos ejemplos de esta clase que no la 
+  toma en cuenta.</li>
 </ul>
 
 <h3> SVM </h3>
@@ -140,14 +142,14 @@ al Random Forest. </p>
 
 ## 6.Evaluación y comparación de métricas
 
-El Random Forest supera al SVM en todas las métricas. La diferencia de 10 puntos aproximadamente en accuracy se amplifica en el macro F1 (~15 puntos), donde el peso de las clases minoritarias queda expuesto.
+<p>El Random Forest supera al SVM en todas las métricas. La diferencia de 10 puntos aproximadamente en accuracy se amplifica en el macro F1 (~15 puntos), donde el peso de las clases minoritarias queda expuesto.</p>
 
 <h3> Discusión alineada con el Tema 3 </h3>
 
 <h4>Métricas macro, micro y weighted: ¿cuál usar?</h4>
 
-Esta es la decisión clave del tema. En este dataset con clases muy desbalanceadas (clase 3 con 4 
-instancias frente a clase 6 con 580), la elección del promedio cambia radicalmente la lectura del rendimiento:
+<p>Esta es la decisión clave del tema. En este dataset con clases muy desbalanceadas (clase 3 con 4 
+instancias frente a clase 6 con 580), la elección del promedio cambia radicalmente la lectura del rendimiento:</p>
 
 <ul>
   <li>Weighted avg: refleja el rendimiento real en producción si la 
@@ -164,19 +166,19 @@ instancias frente a clase 6 con 580), la elección del promedio cambia radicalme
 
 <h4>Patrón de confusión ordinal</h4>
 
-En ambos modelos se observa que los errores no son aleatorios: siempre 
+<p>En ambos modelos se observa que los errores no son aleatorios: siempre 
 ocurren entre clases adyacentes (5<>6, 6<>7, 7<>8). Ningún modelo confunde 
 calidad 3 con calidad 8. Esto es coherente con la naturaleza ordinal del 
 problema y apunta a que una estrategia One-vs-Rest bien calibrada podría 
-aprovechar esta estructura.
+aprovechar esta estructura.</p>
 
-**¿Por qué el SVM rinde peor?**
+<h4>¿Por qué el SVM rinde peor?</h4>
 
-El SVM busca hiperplanos de separación óptima, pero en un problema de 
+<p>El SVM busca hiperplanos de separación óptima, pero en un problema de 
 7 clases con fronteras difusas entre niveles de calidad adyacentes, 
 los márgenes son muy estrechos. El Random Forest, al construir múltiples 
 árboles con submuestras, es más robusto ante este tipo de ambigüedad de 
-frontera y ante el desbalance de clases.
+frontera y ante el desbalance de clases.</p>
 
 ## 7.Conclusiones y limitaciones
 
@@ -187,7 +189,7 @@ frontera y ante el desbalance de clases.
   <li>La matriz de confusión multiclase revela que el verdadero problema 
   no es el accuracy global sino la incapacidad de ambos modelos para 
   distinguir las calidades extremas (3, 4 y 8), que son precisamente 
-  las más interesantes desde el punto de vista enológico. </li>
+  las más interesantes desde el punto de vista de los vinos. </li>
   <li>La diferencia entre macro avg y weighted avg es la métrica más 
   reveladora de este trabajo: un modelo puede parecer razonablemente 
   bueno en weighted (0.68 RF) y ser mediocre en macro (0.46 RF). Sin 
@@ -195,7 +197,7 @@ frontera y ante el desbalance de clases.
   <li>Clases extremas irresolubles con los datos actuales: la clase 3 
   tiene solo 30 instancias en el dataset completo . Ningún 
   clasificador puede aprender una clase con tan pocas muestras.</li>
-  <li>No se ha explorado la reagrupación de clases**: unificar calidades 
+  <li>No se ha explorado la reagrupación de clases: unificar calidades 
   3-4 como "baja", 5-6 como "media" y 7-9 como "alta" podría mejorar 
   sustancialmente los resultados y facilitar el análisis de la matriz.</li>
 </ul>
@@ -205,7 +207,7 @@ frontera y ante el desbalance de clases.
   <li>Reagrupación en 3 clases (baja / media / alta): simplificaría el problema,
    haría las matrices más interpretables y probablemente mejoraría las métricas de forma significativa. 
    Sería interesante comparar los resultados antes y después de la reagrupación.</li>
-  <li>Técnicas de balanceo de clases: aplicar SMOTE u oversampling sobre las clases 3, 4 y 8 para que 
+  <li>Técnicas de balanceo de clases: aplicar SMOTE u oversampling sobre las clases 3, 4, 8 y 9 para que 
   los modelos tengan suficientes ejemplos de las calidades extremas. También se podría explorar
   el parámetro class_weight='balanced' en ambos modelos.</li>
   <li>Análisis de importancia de variables: el Random Forest permite extraer feature importances.
